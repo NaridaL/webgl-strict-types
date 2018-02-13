@@ -1,0 +1,22 @@
+{
+  "name": "webgl-strict-types",
+  "version": "1.0.0",
+  "description": "Strict TypeScript definitions for WebGL 1 & 2.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "TypeScript",
+    "WebGL",
+    "typings",
+    "types"
+  ],
+  "homepage": "https://github.com/NaridaL/webgl-strict-types",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/NaridaL/webgl-strict-types.git"
+  },
+  "author": "Adrian Leonhard",
+  "license": "MIT"
+}
