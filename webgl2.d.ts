@@ -393,6 +393,7 @@ declare namespace WebGL2RenderingContext {
 		getParameter(pname: GL2['SHADING_LANGUAGE_VERSION']): DOMString // of the form `WebGL<space>GLSL<space>ES<space>3.00<optional><space><vendor-specific information></optional>`
 
 		enable(cap: Capability): void;
+		disable(cap: Capability): void;
 		isEnabled(cap: Capability): GLboolean;
 
 		framebufferRenderbuffer(target: FramebufferTarget, attachment: FramebufferAttachment, renderbuffertarget: GL['RENDERBUFFER'], renderbuffer: WebGLRenderbuffer | null): void;

@@ -128,7 +128,7 @@ declare namespace WebGLRenderingContextStrict {
 	interface GLConst {
 		__brandGlConst: true
 	}
-	type GLenum<S extends string> = S & GLConst;
+	type GLenum<S extends string> = S & GLConst & number;
 	interface Constants {
 		/* ClearBufferMask: Used as ORed bits, so need to be actual numbers: */
 		readonly DEPTH_BUFFER_BIT:                0x00000100;

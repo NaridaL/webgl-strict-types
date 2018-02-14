@@ -1,9 +1,9 @@
 # webgl-strict-types
-Strict types for WebGL and WebGL 2.0. 
+Strict types for WebGL and WebGL 2.0.
 
-The included TypeScript typings for WebGL type all enum parameters as generic `GLenum = number`, as indeed does the specification. 
+The included TypeScript typings for WebGL type all enum parameters as generic `GLenum = number`, as indeed does the specification.
 This is too broad in basically all cases, for example, `bindRenderbuffer(target: GLenum, buffer: WebGLRenderbuffer | null)`
-accepts any number as target when in fact `gl.RENDERBUFFER` is the only valid value. 
+accepts any number as target when in fact `gl.RENDERBUFFER` is the only valid value.
 
 A number of other cases can also
 be modelled more accurately, such as literal number types for some parameters, as well as preventing `WebGLObject` types
@@ -14,11 +14,11 @@ be modelled more accurately, such as literal number types for some parameters, a
 ```
 npm install -D webgl-strict-types
 ````
-## Usage 
+## Usage
 You need to explicitly include the types in your compilation. Use a triple slash statement:
 ```ts
 /// <reference path="node_modules/webgl-strict-types/index.d.ts" />
-``` 
+```
 Alternatively, include them in your tsconfig:
 ```json
 // tsconfig.json
@@ -43,8 +43,9 @@ gl.bindFramebuffer(gl.ARRAY_BUFFER, null)
 
 // You can use the defined types as follows:
 import GL = WebGLRenderingContextStrict;
+const WGL = WebGLRenderingContext as any as WebGLRenderingContextStrict.Constants;
 const bufferTarget: GL.BufferTarget = gl.ARRAY_BUFFER;
-const framebufferTarget: GL['FRAMEBUFFER'] = gl.FRAMEBUFFER;
+const framebufferTarget: GL['FRAMEBUFFER'] = WGL.FRAMEBUFFER;
 
 // Without this lib, not an error:
 const webGLBuffer: WebGLBuffer = gl.createRenderbuffer();
