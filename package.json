@@ -1,6 +1,6 @@
 {
   "name": "webgl-strict-types",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Strict TypeScript definitions for WebGL 1 & 2.",
   "main": "index.js",
   "scripts": {
