@@ -370,9 +370,6 @@ declare namespace WebGL2RenderingContext {
 		getParameter(pname: GL2['MAX_VERTEX_UNIFORM_BLOCKS']): GLint;
 		getParameter(pname: GL2['MAX_VERTEX_UNIFORM_COMPONENTS']): GLint;
 		getParameter(pname: GL2['MIN_PROGRAM_TEXEL_OFFSET']): GLint;
-		getParameter(pname: GL2['PACK_ROW_LENGTH']): GLint;
-		getParameter(pname: GL2['PACK_SKIP_PIXELS']): GLint;
-		getParameter(pname: GL2['PACK_SKIP_ROWS']): GLint;
 		getParameter(pname: GL2['RASTERIZER_DISCARD']): GLboolean;
 		getParameter(pname: GL2['READ_BUFFER']): GL2['BACK'] | GL2['NONE'] | GL.ColorAttachment;
 		getParameter(pname: GL2['SAMPLER_BINDING']): WebGLSampler;
@@ -383,11 +380,7 @@ declare namespace WebGL2RenderingContext {
 		getParameter(pname: GL2['TRANSFORM_FEEDBACK_BINDING']): WebGLTransformFeedback;
 		getParameter(pname: GL2['TRANSFORM_FEEDBACK_PAUSED']): GLboolean;
 		getParameter(pname: GL2['UNIFORM_BUFFER_OFFSET_ALIGNMENT']): GLint;
-		getParameter(pname: GL2['UNPACK_IMAGE_HEIGHT']): GLint;
-		getParameter(pname: GL2['UNPACK_ROW_LENGTH']): GLint;
-		getParameter(pname: GL2['UNPACK_SKIP_IMAGES']): GLint;
-		getParameter(pname: GL2['UNPACK_SKIP_PIXELS']): GLint;
-		getParameter(pname: GL2['UNPACK_SKIP_ROWS']): GLint;
+		getParameter(pname: PixelStorageIntParameter): GLint;
 		getParameter(pname: GL2['VERTEX_ARRAY_BINDING']): WebGLVertexArrayObject;
 		getParameter(pname: GL2['VERSION']): DOMString // of the form `WebGL<space>2.0<optional><space><vendor-specific information></optional>`
 		getParameter(pname: GL2['SHADING_LANGUAGE_VERSION']): DOMString // of the form `WebGL<space>GLSL<space>ES<space>3.00<optional><space><vendor-specific information></optional>`
@@ -420,19 +413,28 @@ declare namespace WebGL2RenderingContext {
 
 		getRenderbufferParameter(target: GL['RENDERBUFFER'], pname: GL2['RENDERBUFFER_SAMPLES']): GLint;
 
+		texParameterf(target: TextureTarget, pname: never, param: GLfloat): void;
+		texParameteri(target: TextureTarget, pname: GL2['TEXTURE_MAG_FILTER'], param: GL.TextureMagFilter): void;
+		texParameteri(target: TextureTarget, pname: GL2['TEXTURE_MIN_FILTER'], param: GL.TextureMinFilter): void;
+		texParameteri(target: TextureTarget, pname: GL2['TEXTURE_WRAP_S'] | GL2['TEXTURE_WRAP_T'] | GL2['TEXTURE_WRAP_R'], param: GL.TextureWrap): void;
+		texParameteri(target: TextureTarget, pname: GL2['TEXTURE_BASE_LEVEL'], param: GLint): void;
+		texParameteri(target: TextureTarget, pname: GL2['TEXTURE_COMPARE_FUNC'], param: GL.ComparisonFunc): void;
+		texParameteri(target: TextureTarget, pname: GL2['TEXTURE_COMPARE_MODE'], param: GL2['COMPARE_REF_TO_TEXTURE'] | GL2['NONE']): void;
+		texParameteri(target: TextureTarget, pname: GL2['TEXTURE_IMMUTABLE_FORMAT'], param: GLboolean): void;
+		texParameteri(target: TextureTarget, pname: GL2['TEXTURE_IMMUTABLE_LEVELS'], param: GLuint): void;
+		texParameteri(target: TextureTarget, pname: GL2['TEXTURE_MAX_LEVEL'], param: GLint): void;
+		texParameterf(target: TextureTarget, pname: GL2['TEXTURE_MAX_LOD'] | GL2['TEXTURE_MIN_LOD'], param: GLfloat): void;
+
 		getTexParameter(target: TextureTarget, pname: GL2['TEXTURE_MAG_FILTER']): GL.TextureMagFilter;
 		getTexParameter(target: TextureTarget, pname: GL2['TEXTURE_MIN_FILTER']): GL.TextureMinFilter;
-		getTexParameter(target: TextureTarget, pname: GL2['TEXTURE_WRAP_S']): GL.TextureWrap;
-		getTexParameter(target: TextureTarget, pname: GL2['TEXTURE_WRAP_T']): GL.TextureWrap;
+		getTexParameter(target: TextureTarget, pname: GL2['TEXTURE_WRAP_S'] | GL2['TEXTURE_WRAP_T'] | GL2['TEXTURE_WRAP_R']): GL.TextureWrap;
 		getTexParameter(target: TextureTarget, pname: GL2['TEXTURE_BASE_LEVEL']): GLint;
 		getTexParameter(target: TextureTarget, pname: GL2['TEXTURE_COMPARE_FUNC']): GL.ComparisonFunc;
 		getTexParameter(target: TextureTarget, pname: GL2['TEXTURE_COMPARE_MODE']): GL2['COMPARE_REF_TO_TEXTURE'] | GL2['NONE']
 		getTexParameter(target: TextureTarget, pname: GL2['TEXTURE_IMMUTABLE_FORMAT']): GLboolean;
 		getTexParameter(target: TextureTarget, pname: GL2['TEXTURE_IMMUTABLE_LEVELS']): GLuint;
 		getTexParameter(target: TextureTarget, pname: GL2['TEXTURE_MAX_LEVEL']): GLint;
-		getTexParameter(target: TextureTarget, pname: GL2['TEXTURE_MAX_LOD']): GLfloat;
-		getTexParameter(target: TextureTarget, pname: GL2['TEXTURE_MIN_LOD']): GLfloat;
-		getTexParameter(target: TextureTarget, pname: GL2['TEXTURE_WRAP_R']): GL.TextureWrap;
+		getTexParameter(target: TextureTarget, pname: GL2['TEXTURE_MAX_LOD'] | GL2['TEXTURE_MIN_LOD']): GLfloat;
 
 		getUniform(program: WebGLProgram, location: WebGLUniformLocation): UniformValue;
 
@@ -444,31 +446,11 @@ declare namespace WebGL2RenderingContext {
 
 		hint(target: GL2['FRAGMENT_SHADER_DERIVATIVE_HINT'], mode: GL.HintMode): void;
 
-		pixelStorei(pname: GL2['PACK_ROW_LENGTH'], param: GLint): void;
-		pixelStorei(pname: GL2['PACK_SKIP_PIXELS'], param: GLint): void;
-		pixelStorei(pname: GL2['PACK_SKIP_ROWS'], param: GLint): void;
-		pixelStorei(pname: GL2['UNPACK_ROW_LENGTH'], param: GLint): void;
-		pixelStorei(pname: GL2['UNPACK_IMAGE_HEIGHT'], param: GLint): void;
-		pixelStorei(pname: GL2['UNPACK_SKIP_PIXELS'], param: GLint): void;
-		pixelStorei(pname: GL2['UNPACK_SKIP_ROWS'], param: GLint): void;
-		pixelStorei(pname: GL2['UNPACK_SKIP_IMAGES'], param: GLint): void;
+		pixelStorei(pname: PixelStorageIntParameter, param: GLint): void;
 
 		renderbufferStorage(target: GL['RENDERBUFFER'], internalformat: RenderbufferInternalFormat, width: GLsizei, height: GLsizei): void;
 
-		texParameterf(target: TextureTarget, pname: never, param: GLfloat): void;
-		texParameteri(target: TextureTarget, pname: GL2['TEXTURE_MAG_FILTER'], param: GL.TextureMagFilter): void;
-		texParameteri(target: TextureTarget, pname: GL2['TEXTURE_MIN_FILTER'], param: GL.TextureMinFilter): void;
-		texParameteri(target: TextureTarget, pname: GL2['TEXTURE_WRAP_S'], param: GL.TextureWrap): void;
-		texParameteri(target: TextureTarget, pname: GL2['TEXTURE_WRAP_T'], param: GL.TextureWrap): void;
-		texParameteri(target: TextureTarget, pname: GL2['TEXTURE_BASE_LEVEL'], param: GLint): void;
-		texParameteri(target: TextureTarget, pname: GL2['TEXTURE_COMPARE_FUNC'], param: GL.ComparisonFunc): void;
-		texParameteri(target: TextureTarget, pname: GL2['TEXTURE_COMPARE_MODE'], param: GL2['COMPARE_REF_TO_TEXTURE'] | GL2['NONE']): void;
-		texParameteri(target: TextureTarget, pname: GL2['TEXTURE_IMMUTABLE_FORMAT'], param: GLboolean): void;
-		texParameteri(target: TextureTarget, pname: GL2['TEXTURE_IMMUTABLE_LEVELS'], param: GLuint): void;
-		texParameteri(target: TextureTarget, pname: GL2['TEXTURE_MAX_LEVEL'], param: GLint): void;
-		texParameterf(target: TextureTarget, pname: GL2['TEXTURE_MAX_LOD'], param: GLfloat): void;
-		texParameterf(target: TextureTarget, pname: GL2['TEXTURE_MIN_LOD'], param: GLfloat): void;
-		texParameteri(target: TextureTarget, pname: GL2['TEXTURE_WRAP_R'], param: GL.TextureWrap): void;
+		copyTexImage2D(target: TexImage2DTarget, level: GLint, internalformat: TextureInternalFormat, x: GLint, y: GLint, width: GLsizei, height: GLsizei, border: 0): void;
 
 		/* Buffer objects */
 		// WebGL1:
@@ -1167,7 +1149,8 @@ declare namespace WebGL2RenderingContext {
 	}
 	type FramebufferTarget = GL2['FRAMEBUFFER'] | GL2['DRAW_FRAMEBUFFER'] | GL2['READ_FRAMEBUFFER'];
 	type FramebufferAttachment = GL.FramebufferRenderbufferAttachment | GL.ColorAttachment;
-	type RenderbufferInternalFormat = GL2['R8']
+	type RenderbufferInternalFormat = GL.RenderbufferInternalFormat
+		| GL2['R8']
 		| GL2['R8UI']
 		| GL2['R8I']
 		| GL2['R16UI']
@@ -1184,9 +1167,7 @@ declare namespace WebGL2RenderingContext {
 		| GL2['RGB8']
 		| GL2['RGBA8']
 		| GL2['SRGB8_ALPHA8']
-		| GL2['RGBA4']
 		| GL2['RGB565']
-		| GL2['RGB5_A1']
 		| GL2['RGB10_A2']
 		| GL2['RGBA8UI']
 		| GL2['RGBA8I']
@@ -1195,13 +1176,35 @@ declare namespace WebGL2RenderingContext {
 		| GL2['RGBA16I']
 		| GL2['RGBA32I']
 		| GL2['RGBA32UI']
-		| GL2['DEPTH_COMPONENT16']
 		| GL2['DEPTH_COMPONENT24']
 		| GL2['DEPTH_COMPONENT32F']
-		| GL2['DEPTH_STENCIL']
 		| GL2['DEPTH24_STENCIL8']
 		| GL2['DEPTH32F_STENCIL8']
-		| GL2['STENCIL_INDEX8'];
+	type TextureInternalFormat = GL.TextureInternalFormat
+		| GL2['R8']
+		| GL2['R16F']
+		| GL2['R32F']
+		| GL2['R8UI']
+		| GL2['RG8']
+		| GL2['RG16F']
+		| GL2['RG32F']
+		| GL2['RG8UI']
+		| GL2['RGB8']
+		| GL2['SRGB8']
+		| GL2['RGB565']
+		| GL2['R11F_G11F_B10F']
+		| GL2['RGB9_E5']
+		| GL2['RGB16F']
+		| GL2['RGB32F']
+		| GL2['RGB8UI']
+		| GL2['RGBA8']
+		| GL2['SRGB8_ALPHA8']
+		| GL2['RGB5_A1']
+		| GL2['RGB10_A2']
+		| GL2['RGBA4']
+		| GL2['RGBA16F']
+		| GL2['RGBA32F']
+		| GL2['RGBA8UI'];
 	type BufferTarget = GL.BufferTarget
 		| GL2['COPY_READ_BUFFER']
 		| GL2['COPY_WRITE_BUFFER']
@@ -1283,40 +1286,24 @@ declare namespace WebGL2RenderingContext {
 	type TextureTarget = GL.TextureTarget | TexImage3DTarget;
 	type Capability = GL.Capability | GL2['RASTERIZER_DISCARD'];
 	type TexImage3DTarget = GL2['TEXTURE_3D'] | GL2['TEXTURE_2D_ARRAY'];
-	type TextureInternalFormat = GL.TextureInternalFormat
-		| GL2['R8']
-		| GL2['R16F']
-		| GL2['R32F']
-		| GL2['R8UI']
-		| GL2['RG8']
-		| GL2['RG16F']
-		| GL2['RG32F']
-		| GL2['RG8UI']
-		| GL2['RGB8']
-		| GL2['SRGB8']
-		| GL2['RGB565']
-		| GL2['R11F_G11F_B10F']
-		| GL2['RGB9_E5']
-		| GL2['RGB16F']
-		| GL2['RGB32F']
-		| GL2['RGB8UI']
-		| GL2['RGBA8']
-		| GL2['SRGB8_ALPHA8']
-		| GL2['RGB5_A1']
-		| GL2['RGB10_A2']
-		| GL2['RGBA4']
-		| GL2['RGBA16F']
-		| GL2['RGBA32F']
-		| GL2['RGBA8UI'];
 	// see https://www.khronos.org/registry/OpenGL/specs/es/3.0/es_spec_3.0.pdf#table.3.2
-	type ReadPixelsFormat = GL2['RGBA']
-		| GL2['RGBA_INTEGER']
-		| GL2['RGB']
-		| GL2['RGB_INTEGER']
+	type TextureFormat = GL.TextureInternalFormat // in GL1 internalFormat = format
+		| GL2['RED']
+		| GL2['RED_INTEGER']
 		| GL2['RG']
 		| GL2['RG_INTEGER']
-		| GL2['RED']
-		| GL2['RED_INTEGER'];
+		| GL2['RGB']
+		| GL2['RGB_INTEGER']
+		| GL2['RGBA']
+		| GL2['RGBA_INTEGER']
+	type ReadPixelsFormat = GL2['RED']
+		| GL2['RED_INTEGER']
+		| GL2['RG']
+		| GL2['RG_INTEGER']
+		| GL2['RGB']
+		| GL2['RGB_INTEGER']
+		| GL2['RGBA']
+		| GL2['RGBA_INTEGER'];
 	// see https://www.khronos.org/registry/OpenGL/specs/es/3.0/es_spec_3.0.pdf#table.3.2
 	type ReadPixelsType = GL.ArrayType
 		| GL2['UNSIGNED_SHORT_4_4_4_4']
@@ -1325,6 +1312,14 @@ declare namespace WebGL2RenderingContext {
 		| GL2['UNSIGNED_SHORT_5_6_5']
 		| GL2['UNSIGNED_INT_10F_11F_11F_REV']
 		| GL2['UNSIGNED_INT_5_9_9_9_REV'];
+	type PixelStorageIntParameter = GL2['PACK_ROW_LENGTH']
+		| GL2['PACK_SKIP_PIXELS']
+		| GL2['PACK_SKIP_ROWS']
+		| GL2['UNPACK_ROW_LENGTH']
+		| GL2['UNPACK_IMAGE_HEIGHT']
+		| GL2['UNPACK_SKIP_PIXELS']
+		| GL2['UNPACK_SKIP_ROWS']
+		| GL2['UNPACK_SKIP_IMAGES']
 
 
 	// https://www.khronos.org/registry/webgl/extensions/EXT_texture_filter_anisotropic/
@@ -1376,14 +1371,14 @@ declare namespace WebGL2RenderingContext {
 		compressedTexImage2D(target: GL.TexImage2DTarget, level: GLint, internalformat: CompressedTextureFormat, width: GLsizei, height: GLsizei, border: 0, imageSize: GLsizei, offset: GLintptr): void;
 		compressedTexImage2D(target: GL.TexImage2DTarget, level: GLint, internalformat: CompressedTextureFormat, width: GLsizei, height: GLsizei, border: 0, /* [AllowShared] */ srcData: ArrayBufferView, srcOffset?: GLuint /* = 0 */, srcLengthOverride?: GLuint /* = 0 */): void;
 
-		compressedTexImage3D(target: TexImage3DTarget, level: GLint, internalformat: CompressedTextureFormat3D, width: GLsizei, height: GLsizei, depth: GLsizei, border: 0, imageSize: GLsizei, offset: GLintptr): void;
-		compressedTexImage3D(target: TexImage3DTarget, level: GLint, internalformat: CompressedTextureFormat3D, width: GLsizei, height: GLsizei, depth: GLsizei, border: 0, /* [AllowShared] */ srcData: ArrayBufferView, srcOffset?: GLuint /* = 0 */, srcLengthOverride?: GLuint /* = 0 */): void;
+		compressedTexImage3D(target: GL2['TEXTURE_2D_ARRAY'], level: GLint, internalformat: CompressedTextureFormat3D, width: GLsizei, height: GLsizei, depth: GLsizei, border: 0, imageSize: GLsizei, offset: GLintptr): void;
+		compressedTexImage3D(target: GL2['TEXTURE_2D_ARRAY'], level: GLint, internalformat: CompressedTextureFormat3D, width: GLsizei, height: GLsizei, depth: GLsizei, border: 0, /* [AllowShared] */ srcData: ArrayBufferView, srcOffset?: GLuint /* = 0 */, srcLengthOverride?: GLuint /* = 0 */): void;
 
 		compressedTexSubImage2D(target: GL.TexImage2DTarget, level: GLint, xoffset: GLint, yoffset: GLint, width: GLsizei, height: GLsizei, format: CompressedTextureFormatNoEtc1, imageSize: GLsizei, offset: GLintptr): void;
 		compressedTexSubImage2D(target: GL.TexImage2DTarget, level: GLint, xoffset: GLint, yoffset: GLint, width: GLsizei, height: GLsizei, format: CompressedTextureFormatNoEtc1, /* [AllowShared] */ srcData: ArrayBufferView, srcOffset?: GLuint /* = 0 */, srcLengthOverride?: GLuint /* = 0 */): void;
 
-		compressedTexSubImage3D(target: TexImage3DTarget, level: GLint, xoffset: GLint, yoffset: GLint, zoffset: GLint, width: GLsizei, height: GLsizei, depth: GLsizei, format: CompressedTextureFormat3D, imageSize: GLsizei, offset: GLintptr): void;
-		compressedTexSubImage3D(target: TexImage3DTarget, level: GLint, xoffset: GLint, yoffset: GLint, zoffset: GLint, width: GLsizei, height: GLsizei, depth: GLsizei, format: CompressedTextureFormat3D, /* [AllowShared] */ srcData: ArrayBufferView, srcOffset?: GLuint /* = 0 */, srcLengthOverride?: GLuint /* = 0 */): void;
+		compressedTexSubImage3D(target: GL2['TEXTURE_2D_ARRAY'], level: GLint, xoffset: GLint, yoffset: GLint, zoffset: GLint, width: GLsizei, height: GLsizei, depth: GLsizei, format: CompressedTextureFormat3D, imageSize: GLsizei, offset: GLintptr): void;
+		compressedTexSubImage3D(target: GL2['TEXTURE_2D_ARRAY'], level: GLint, xoffset: GLint, yoffset: GLint, zoffset: GLint, width: GLsizei, height: GLsizei, depth: GLsizei, format: CompressedTextureFormat3D, /* [AllowShared] */ srcData: ArrayBufferView, srcOffset?: GLuint /* = 0 */, srcLengthOverride?: GLuint /* = 0 */): void;
 	}
 	type CompressedTextureFormat3D = GL.CompressedTextureFormatAstc | GL.CompressedTextureFormatEtc | GL.CompressedTextureFormatS3tc | GL.CompressedTextureFormatS3tcSrgb;
 	type CompressedTextureFormatNoEtc1 = CompressedTextureFormat3D | GL.CompressedTextureFormatAtc | GL.CompressedTextureFormatPvrtc;

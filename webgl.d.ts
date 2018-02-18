@@ -125,10 +125,10 @@ declare namespace WebGLRenderingContextStrict {
 		readonly type: T;
 		readonly name: DOMString;
 	}
-	interface GLConst {
-		__brandGlConst: true
-	}
-	type GLenum<S extends string> = S & GLConst & number;
+	// interface GLConst {
+	// 	__brandGlConst: true
+	// }
+	type GLenum<S extends string> = number & { __brand: S };
 	interface Constants {
 		/* ClearBufferMask: Used as ORed bits, so need to be actual numbers: */
 		readonly DEPTH_BUFFER_BIT:                0x00000100;
@@ -663,7 +663,7 @@ declare namespace WebGLRenderingContextStrict {
 		getParameter(pname: GL['ALIASED_LINE_WIDTH_RANGE']): Float32Array // (with 2 elements)
 		getParameter(pname: GL['ALIASED_POINT_SIZE_RANGE']): Float32Array // (with 2 elements)
 		getParameter(pname: GL['ALPHA_BITS']): GLint;
-		getParameter(pname: GL['ARRAY_BUFFER_BINDING']): WebGLBuffer;
+		getParameter(pname: GL.BufferTargetBinding): WebGLBuffer;
 		getParameter(pname: GL['BLEND']): GLboolean;
 		getParameter(pname: GL['BLEND_COLOR']): Float32Array // (with 4 values)
 		getParameter(pname: GL['BLEND_DST_ALPHA']): BlendFuncDstFactor;
@@ -675,7 +675,7 @@ declare namespace WebGLRenderingContextStrict {
 		getParameter(pname: GL['BLUE_BITS']): GLint;
 		getParameter(pname: GL['COLOR_CLEAR_VALUE']): Float32Array; // (with 4 values)
 		getParameter(pname: GL['COLOR_WRITEMASK']): GLboolean[]; // (with 4 values)
-		getParameter(pname: GL['COMPRESSED_TEXTURE_FORMATS']): Uint32Array;
+		getParameter(pname: GL['COMPRESSED_TEXTURE_FORMATS']): ArrayLike<GL.CompressedTextureFormatAstc> & Uint32Array;
 		getParameter(pname: GL['CULL_FACE']): GLboolean;
 		getParameter(pname: GL['CULL_FACE_MODE']): CullFaceMode;
 		getParameter(pname: GL['CURRENT_PROGRAM']): WebGLProgram;
@@ -686,7 +686,6 @@ declare namespace WebGLRenderingContextStrict {
 		getParameter(pname: GL['DEPTH_TEST']): GLboolean;
 		getParameter(pname: GL['DEPTH_WRITEMASK']): GLboolean;
 		getParameter(pname: GL['DITHER']): GLboolean;
-		getParameter(pname: GL['ELEMENT_ARRAY_BUFFER_BINDING']): WebGLBuffer;
 		getParameter(pname: GL['FRAMEBUFFER_BINDING']): WebGLFramebuffer;
 		getParameter(pname: GL['FRONT_FACE']): FrontFaceMode;
 		getParameter(pname: GL['GENERATE_MIPMAP_HINT']): HintMode;
@@ -1001,7 +1000,12 @@ declare namespace WebGLRenderingContextStrict {
 		| GL['RGB5_A1']
 		| GL['DEPTH_COMPONENT16']
 		| GL['STENCIL_INDEX8']
-		| GL['DEPTH_STENCIL']
+		| GL['DEPTH_STENCIL'];
+	type TextureInternalFormat = GL['ALPHA']
+		| GL['RGB']
+		| GL['RGBA']
+		| GL['LUMINANCE']
+		| GL['LUMINANCE_ALPHA'];
 	type TextureTarget = GL['TEXTURE_2D'] | GL['TEXTURE_CUBE_MAP']
 	type BlendEquationMode = GL['FUNC_ADD'] | GL['FUNC_SUBTRACT'] | GL['FUNC_REVERSE_SUBTRACT']
 	type BlendFuncDstFactorNoConstant = GL['ZERO']
@@ -1035,11 +1039,6 @@ declare namespace WebGLRenderingContextStrict {
 		| GL['TEXTURE_CUBE_MAP_POSITIVE_Z']
 		| GL['TEXTURE_CUBE_MAP_NEGATIVE_Z']
 	type TexImage2DTarget = GL['TEXTURE_2D'] | CubeMapFaces;
-	type TextureInternalFormat = GL['ALPHA']
-		| GL['RGB']
-		| GL['RGBA']
-		| GL['LUMINANCE']
-		| GL['LUMINANCE_ALPHA']
 	type ShaderType = GL['FRAGMENT_SHADER'] | GL['VERTEX_SHADER']
 	type CullFaceMode = GL['FRONT'] | GL['BACK'] | GL['FRONT_AND_BACK']
 	type Capability = GL['BLEND']
