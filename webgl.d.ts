@@ -7,9 +7,9 @@
  * USAGE: Because the built-in WebGLRenderingContext cannot be overriden, this type is called `WebGLRenderingContextStrict`.
  * You need to cast the context once you have it: `const gl = canvas.getContext('webgl') as any as WebGLRenderingContextStrict`
  */
-// TypeScript Version: 2.3
- // tslint:disable:max-line-length
+// tslint:disable:max-line-length
 // tslint:disable:typedef-whitespace
+// tslint:disable:unified-signatures
 
 // type GLboolean = boolean; // WebIDL: boolean;
 // type GLbitfield = number; // WebIDL: unsigned long
@@ -31,7 +31,7 @@ type DOMString = string;
 type WebGLPowerPreference = "default" | "low-power" | "high-performance";
 
 interface WebGLObject {
-	__WebGLObjectBrand: string
+	__WebGLObjectBrand: string;
 }
 
 interface WebGLBuffer extends WebGLObject {
@@ -102,23 +102,23 @@ interface WebGLShaderPrecisionFormat {
 }
 
 type TexImageSource = ImageBitmap |
-         ImageData |
-         HTMLImageElement |
-         HTMLCanvasElement |
-         HTMLVideoElement
+	ImageData |
+	HTMLImageElement |
+	HTMLCanvasElement |
+	HTMLVideoElement;
 
 type Float32List = (/* [AllowShared] */ Float32Array | GLfloat[]); // WebIDL: ([AllowShared] Float32Array or GLfloat[])
 type Int32List = (/* [AllowShared] */ Int32Array | GLint[]); // WebIDL: ([AllowShared] Int32Array or GLint[])
 declare namespace WebGLRenderingContextStrict {
 	interface WebGLContextAttributes {
-		alpha: GLboolean // = true
-		depth: GLboolean // = true
-		stencil: GLboolean // = false
-		antialias: GLboolean // = true
-		premultipliedAlpha: GLboolean // = true
-		preserveDrawingBuffer: GLboolean // = false
-		powerPreference: WebGLPowerPreference // = "default"
-		failIfMajorPerformanceCaveat: GLboolean // = false
+		alpha: GLboolean; // = true
+		depth: GLboolean; // = true
+		stencil: GLboolean; // = false
+		antialias: GLboolean; // = true
+		premultipliedAlpha: GLboolean; // = true
+		preserveDrawingBuffer: GLboolean; // = false
+		powerPreference: WebGLPowerPreference; // = "default"
+		failIfMajorPerformanceCaveat: GLboolean; // = false
 	}
 	interface WebGLActiveInfo<T = any> {
 		readonly size: GLint;
@@ -178,7 +178,7 @@ declare namespace WebGLRenderingContextStrict {
 		/* BlendEquationSeparate */
 		readonly FUNC_ADD:                        /* 0x8006 */ GLenum<'FUNC_ADD'>;
 		readonly BLEND_EQUATION:                  /* 0x8009 */ GLenum<'BLEND_EQUATION'>;
-		readonly BLEND_EQUATION_RGB:              /* 0x8009 */ GLenum<'BLEND_EQUATION_RGB'>   /* same as BLEND_EQUATION */
+		readonly BLEND_EQUATION_RGB:              /* 0x8009 */ GLenum<'BLEND_EQUATION_RGB'>;  /* same as BLEND_EQUATION */
 		readonly BLEND_EQUATION_ALPHA:            /* 0x883D */ GLenum<'BLEND_EQUATION_ALPHA'>;
 
 		/* BlendSubtract */
@@ -585,16 +585,15 @@ declare namespace WebGLRenderingContextStrict {
 		blendColor(red: GLclampf, green: GLclampf, blue: GLclampf, alpha: GLclampf): void;
 		blendEquation(mode: BlendEquationMode): void;
 		blendEquationSeparate(modeRGB: BlendEquationMode, modeAlpha: BlendEquationMode): void;
-		/**In the WebGL API, constant color and constant alpha cannot be used together as source and destination factors in the blend function. A call to blendFunc will generate an INVALID_OPERATION error if one of the two factors is set to CONSTANT_COLOR or ONE_MINUS_CONSTANT_COLOR and the other to CONSTANT_ALPHA or ONE_MINUS_CONSTANT_ALPHA. */
+		// In the WebGL API, constant color and constant alpha cannot be used together as source and destination factors in the blend function. A call to blendFunc will generate an INVALID_OPERATION error if one of the two factors is set to CONSTANT_COLOR or ONE_MINUS_CONSTANT_COLOR and the other to CONSTANT_ALPHA or ONE_MINUS_CONSTANT_ALPHA.
 		blendFunc(sfactor: GL['CONSTANT_COLOR'] | GL['ONE_MINUS_CONSTANT_COLOR'], dfactor: BlendFuncDstFactorNoConstantAlpha): void;
 		blendFunc(sfactor: BlendFuncDstFactorNoConstantAlpha, dfactor: GL['CONSTANT_COLOR'] | GL['ONE_MINUS_CONSTANT_COLOR']): void;
 		blendFunc(sfactor: GL['CONSTANT_ALPHA'] | GL['ONE_MINUS_CONSTANT_ALPHA'], dfactor: BlendFuncDstFactorNoConstantColor): void;
 		blendFunc(sfactor: BlendFuncDstFactorNoConstantColor, dfactor: GL['CONSTANT_ALPHA'] | GL['ONE_MINUS_CONSTANT_ALPHA']): void;
 		blendFunc(sfactor: BlendFuncDstFactorNoConstant | GL['SRC_ALPHA_SATURATE'], dfactor: BlendFuncDstFactorNoConstant): void;
 
-		/** A call to blendFuncSeparate will generate an INVALID_OPERATION error if srcRGB is set to CONSTANT_COLOR or ONE_MINUS_CONSTANT_COLOR and dstRGB is set to CONSTANT_ALPHA or ONE_MINUS_CONSTANT_ALPHA or vice versa.
-		 * This doesn't seem to apply to srcAlpha/dstAlpha.
-		 */
+		// A call to blendFuncSeparate will generate an INVALID_OPERATION error if srcRGB is set to CONSTANT_COLOR or ONE_MINUS_CONSTANT_COLOR and dstRGB is set to CONSTANT_ALPHA or ONE_MINUS_CONSTANT_ALPHA or vice versa.
+		// This doesn't seem to apply to srcAlpha/dstAlpha.
 		blendFuncSeparate(sfactor: GL['CONSTANT_COLOR'] | GL['ONE_MINUS_CONSTANT_COLOR'], dfactor: BlendFuncDstFactorNoConstantAlpha,
 			srcAlpha: BlendFuncDstFactor | GL['SRC_ALPHA_SATURATE'], dstAlpha: BlendFuncDstFactor): void;
 		blendFuncSeparate(sfactor: BlendFuncDstFactorNoConstantAlpha, dfactor: GL['CONSTANT_COLOR'] | GL['ONE_MINUS_CONSTANT_COLOR'],
@@ -660,12 +659,12 @@ declare namespace WebGLRenderingContextStrict {
 		getBufferParameter(target: BufferTarget, pname: GL['BUFFER_SIZE']): GLint;
 
 		getParameter(pname: GL['ACTIVE_TEXTURE']): TextureUnit;
-		getParameter(pname: GL['ALIASED_LINE_WIDTH_RANGE']): Float32Array // (with 2 elements)
-		getParameter(pname: GL['ALIASED_POINT_SIZE_RANGE']): Float32Array // (with 2 elements)
+		getParameter(pname: GL['ALIASED_LINE_WIDTH_RANGE']): Float32Array; // (with 2 elements)
+		getParameter(pname: GL['ALIASED_POINT_SIZE_RANGE']): Float32Array; // (with 2 elements)
 		getParameter(pname: GL['ALPHA_BITS']): GLint;
 		getParameter(pname: GL.BufferTargetBinding): WebGLBuffer;
 		getParameter(pname: GL['BLEND']): GLboolean;
-		getParameter(pname: GL['BLEND_COLOR']): Float32Array // (with 4 values)
+		getParameter(pname: GL['BLEND_COLOR']): Float32Array; // (with 4 values)
 		getParameter(pname: GL['BLEND_DST_ALPHA']): BlendFuncDstFactor;
 		getParameter(pname: GL['BLEND_DST_RGB']): BlendFuncDstFactor;
 		getParameter(pname: GL['BLEND_EQUATION_ALPHA']): BlendEquationMode;
@@ -715,7 +714,7 @@ declare namespace WebGLRenderingContextStrict {
 		getParameter(pname: GL['SAMPLE_COVERAGE_INVERT']): GLboolean;
 		getParameter(pname: GL['SAMPLE_COVERAGE_VALUE']): GLfloat;
 		getParameter(pname: GL['SAMPLES']): GLint;
-		getParameter(pname: GL['SCISSOR_BOX']): Int32Array // (with 4 elements)
+		getParameter(pname: GL['SCISSOR_BOX']): Int32Array; // (with 4 elements)
 		getParameter(pname: GL['SCISSOR_TEST']): GLboolean;
 		getParameter(pname: GL['SHADING_LANGUAGE_VERSION']): DOMString;
 		getParameter(pname: GL['STENCIL_BACK_FAIL']): StencilOp;
@@ -739,7 +738,7 @@ declare namespace WebGLRenderingContextStrict {
 		getParameter(pname: GL['TEXTURE_BINDING_2D']): WebGLTexture;
 		getParameter(pname: GL['TEXTURE_BINDING_CUBE_MAP']): WebGLTexture;
 		getParameter(pname: GL['UNPACK_ALIGNMENT']): GLint;
-		getParameter(pname: GL['UNPACK_COLORSPACE_CONVERSION_WEBGL']): GL['BROWSER_DEFAULT_WEBGL'] | GL['NONE']
+		getParameter(pname: GL['UNPACK_COLORSPACE_CONVERSION_WEBGL']): GL['BROWSER_DEFAULT_WEBGL'] | GL['NONE'];
 		getParameter(pname: GL['UNPACK_FLIP_Y_WEBGL']): GLboolean;
 		getParameter(pname: GL['UNPACK_PREMULTIPLY_ALPHA_WEBGL']): GLboolean;
 		getParameter(pname: GL['VENDOR']): DOMString;
@@ -794,7 +793,7 @@ declare namespace WebGLRenderingContextStrict {
 		getVertexAttrib(index: GLuint, pname: GL['VERTEX_ATTRIB_ARRAY_STRIDE']): GLint;
 		getVertexAttrib(index: GLuint, pname: GL['VERTEX_ATTRIB_ARRAY_TYPE']): ArrayType;
 		getVertexAttrib(index: GLuint, pname: GL['VERTEX_ATTRIB_ARRAY_NORMALIZED']): GLboolean;
-		getVertexAttrib(index: GLuint, pname: GL['CURRENT_VERTEX_ATTRIB']): Float32Array // (with 4 elements)
+		getVertexAttrib(index: GLuint, pname: GL['CURRENT_VERTEX_ATTRIB']): Float32Array; // (with 4 elements)
 
 		/* [WebGLHandlesContextLoss] */ getVertexAttribOffset(index: GLuint, pname: GL['VERTEX_ATTRIB_ARRAY_POINTER']): GLintptr;
 
@@ -992,9 +991,9 @@ declare namespace WebGLRenderingContextStrict {
 		| GL['TEXTURE29']
 		| GL['TEXTURE30']
 		| GL['TEXTURE31'];
-	type BufferTarget = GL['ARRAY_BUFFER'] | GL['ELEMENT_ARRAY_BUFFER']
-	type BufferTargetBinding = GL['ARRAY_BUFFER_BINDING'] | GL['ELEMENT_ARRAY_BUFFER']
-	type RenderbufferTarget = GL['RENDERBUFFER']
+	type BufferTarget = GL['ARRAY_BUFFER'] | GL['ELEMENT_ARRAY_BUFFER'];
+	type BufferTargetBinding = GL['ARRAY_BUFFER_BINDING'] | GL['ELEMENT_ARRAY_BUFFER'];
+	type RenderbufferTarget = GL['RENDERBUFFER'];
 	type RenderbufferInternalFormat = GL['RGBA4']
 		| GL['RGB565']
 		| GL['RGB5_A1']
@@ -1006,8 +1005,8 @@ declare namespace WebGLRenderingContextStrict {
 		| GL['RGBA']
 		| GL['LUMINANCE']
 		| GL['LUMINANCE_ALPHA'];
-	type TextureTarget = GL['TEXTURE_2D'] | GL['TEXTURE_CUBE_MAP']
-	type BlendEquationMode = GL['FUNC_ADD'] | GL['FUNC_SUBTRACT'] | GL['FUNC_REVERSE_SUBTRACT']
+	type TextureTarget = GL['TEXTURE_2D'] | GL['TEXTURE_CUBE_MAP'];
+	type BlendEquationMode = GL['FUNC_ADD'] | GL['FUNC_SUBTRACT'] | GL['FUNC_REVERSE_SUBTRACT'];
 	type BlendFuncDstFactorNoConstant = GL['ZERO']
 		| GL['ONE']
 		| GL['SRC_COLOR']
@@ -1017,30 +1016,30 @@ declare namespace WebGLRenderingContextStrict {
 		| GL['SRC_ALPHA']
 		| GL['ONE_MINUS_SRC_ALPHA']
 		| GL['DST_ALPHA']
-		| GL['ONE_MINUS_DST_ALPHA']
+		| GL['ONE_MINUS_DST_ALPHA'];
 	type BlendFuncDstFactorNoConstantColor = BlendFuncDstFactorNoConstant
 		| GL['CONSTANT_ALPHA']
-		| GL['ONE_MINUS_CONSTANT_ALPHA']
+		| GL['ONE_MINUS_CONSTANT_ALPHA'];
 	type BlendFuncDstFactorNoConstantAlpha = BlendFuncDstFactorNoConstant
 		| GL['CONSTANT_COLOR']
-		| GL['ONE_MINUS_CONSTANT_COLOR']
-	type BlendFuncDstFactor = BlendFuncDstFactorNoConstantAlpha | BlendFuncDstFactorNoConstantColor
-	type BlendFuncSrcFactor = BlendFuncDstFactor | GL['SRC_ALPHA_SATURATE']
-	type BufferDataUsage = GL['STREAM_DRAW'] | GL['STATIC_DRAW'] | GL['DYNAMIC_DRAW']
+		| GL['ONE_MINUS_CONSTANT_COLOR'];
+	type BlendFuncDstFactor = BlendFuncDstFactorNoConstantAlpha | BlendFuncDstFactorNoConstantColor;
+	type BlendFuncSrcFactor = BlendFuncDstFactor | GL['SRC_ALPHA_SATURATE'];
+	type BufferDataUsage = GL['STREAM_DRAW'] | GL['STATIC_DRAW'] | GL['DYNAMIC_DRAW'];
 	type FramebufferStatus = GL['FRAMEBUFFER_COMPLETE']
 		| GL['FRAMEBUFFER_INCOMPLETE_ATTACHMENT']
 		| GL['FRAMEBUFFER_INCOMPLETE_MISSING_ATTACHMENT']
 		| GL['FRAMEBUFFER_INCOMPLETE_DIMENSIONS']
-		| GL['FRAMEBUFFER_UNSUPPORTED']
+		| GL['FRAMEBUFFER_UNSUPPORTED'];
 	type CubeMapFaces = GL['TEXTURE_CUBE_MAP_POSITIVE_X']
 		| GL['TEXTURE_CUBE_MAP_NEGATIVE_X']
 		| GL['TEXTURE_CUBE_MAP_POSITIVE_Y']
 		| GL['TEXTURE_CUBE_MAP_NEGATIVE_Y']
 		| GL['TEXTURE_CUBE_MAP_POSITIVE_Z']
-		| GL['TEXTURE_CUBE_MAP_NEGATIVE_Z']
+		| GL['TEXTURE_CUBE_MAP_NEGATIVE_Z'];
 	type TexImage2DTarget = GL['TEXTURE_2D'] | CubeMapFaces;
-	type ShaderType = GL['FRAGMENT_SHADER'] | GL['VERTEX_SHADER']
-	type CullFaceMode = GL['FRONT'] | GL['BACK'] | GL['FRONT_AND_BACK']
+	type ShaderType = GL['FRAGMENT_SHADER'] | GL['VERTEX_SHADER'];
+	type CullFaceMode = GL['FRONT'] | GL['BACK'] | GL['FRONT_AND_BACK'];
 	type Capability = GL['BLEND']
 		| GL['CULL_FACE']
 		| GL['DEPTH_TEST']
@@ -1049,7 +1048,7 @@ declare namespace WebGLRenderingContextStrict {
 		| GL['SAMPLE_ALPHA_TO_COVERAGE']
 		| GL['SAMPLE_COVERAGE']
 		| GL['SCISSOR_TEST']
-		| GL['STENCIL_TEST']
+		| GL['STENCIL_TEST'];
 	type ComparisonFunc = GL['NEVER']
 		| GL['LESS']
 		| GL['EQUAL']
@@ -1057,39 +1056,39 @@ declare namespace WebGLRenderingContextStrict {
 		| GL['GREATER']
 		| GL['NOTEQUAL']
 		| GL['GEQUAL']
-		| GL['ALWAYS']
+		| GL['ALWAYS'];
 	type DrawMode = GL['POINTS']
 		| GL['LINE_STRIP']
 		| GL['LINE_LOOP']
 		| GL['LINES']
 		| GL['TRIANGLE_STRIP']
 		| GL['TRIANGLE_FAN']
-		| GL['TRIANGLES']
+		| GL['TRIANGLES'];
 	type FramebufferRenderbufferAttachment = GL['COLOR_ATTACHMENT0']
 		| GL['DEPTH_ATTACHMENT']
 		| GL['DEPTH_STENCIL_ATTACHMENT']
-		| GL['STENCIL_ATTACHMENT']
+		| GL['STENCIL_ATTACHMENT'];
 	type FramebufferTexture2DAttachment = GL['COLOR_ATTACHMENT0']
 		| GL['DEPTH_ATTACHMENT']
-		| GL['STENCIL_ATTACHMENT']
+		| GL['STENCIL_ATTACHMENT'];
 	type Error = GL['NO_ERROR']
 		| GL['INVALID_ENUM']
 		| GL['INVALID_VALUE']
 		| GL['INVALID_OPERATION']
 		| GL['OUT_OF_MEMORY']
-		| GL['CONTEXT_LOST_WEBGL']
+		| GL['CONTEXT_LOST_WEBGL'];
 	type ShaderPrecisionType = GL['LOW_FLOAT']
 		| GL['MEDIUM_FLOAT']
 		| GL['HIGH_FLOAT']
 		| GL['LOW_INT']
 		| GL['MEDIUM_INT']
-		| GL['HIGH_INT']
+		| GL['HIGH_INT'];
 	type ArrayType = GL['BYTE']
 		| GL['UNSIGNED_BYTE']
 		| GL['SHORT']
 		| GL['UNSIGNED_SHORT']
-		| GL['FLOAT']
-	type HintMode = GL['FASTEST'] | GL['NICEST'] | GL['DONT_CARE']
+		| GL['FLOAT'];
+	type HintMode = GL['FASTEST'] | GL['NICEST'] | GL['DONT_CARE'];
 	type StencilOp = GL['KEEP']
 		| GL['ZERO']
 		| GL['REPLACE']
@@ -1097,18 +1096,18 @@ declare namespace WebGLRenderingContextStrict {
 		| GL['INCR_WRAP']
 		| GL['DECR']
 		| GL['DECR_WRAP']
-		| GL['INVERT']
-	type TextureMagFilter = GL['LINEAR'] | GL['NEAREST']
-	type TextureMinFilter = GL['LINEAR'] | GL['NEAREST'] | GL['NEAREST_MIPMAP_NEAREST'] | GL['LINEAR_MIPMAP_NEAREST'] | GL['NEAREST_MIPMAP_LINEAR'] | GL['LINEAR_MIPMAP_LINEAR']
-	type TextureWrap = GL['REPEAT'] | GL['CLAMP_TO_EDGE'] | GL['MIRRORED_REPEAT']
-	type FrontFaceMode = GL['CW'] | GL['CCW']
+		| GL['INVERT'];
+	type TextureMagFilter = GL['LINEAR'] | GL['NEAREST'];
+	type TextureMinFilter = GL['LINEAR'] | GL['NEAREST'] | GL['NEAREST_MIPMAP_NEAREST'] | GL['LINEAR_MIPMAP_NEAREST'] | GL['NEAREST_MIPMAP_LINEAR'] | GL['LINEAR_MIPMAP_LINEAR'];
+	type TextureWrap = GL['REPEAT'] | GL['CLAMP_TO_EDGE'] | GL['MIRRORED_REPEAT'];
+	type FrontFaceMode = GL['CW'] | GL['CCW'];
 	type AttribType = GL['FLOAT']
 		| GL['FLOAT_VEC2']
 		| GL['FLOAT_VEC3']
 		| GL['FLOAT_VEC4']
 		| GL['FLOAT_MAT2']
 		| GL['FLOAT_MAT3']
-		| GL['FLOAT_MAT4']
+		| GL['FLOAT_MAT4'];
 	type UniformType = GL['FLOAT']
 		| GL['FLOAT_VEC2']
 		| GL['FLOAT_VEC3']
@@ -1125,9 +1124,9 @@ declare namespace WebGLRenderingContextStrict {
 		| GL['FLOAT_MAT3']
 		| GL['FLOAT_MAT4']
 		| GL['SAMPLER_2D']
-		| GL['SAMPLER_CUBE']
-	type ReadPixelsFormat = GL['ALPHA'] | GL['RGB'] | GL['RGBA']
-	type ReadPixelsType = GL['UNSIGNED_BYTE'] | GL['UNSIGNED_SHORT_5_6_5'] | GL['UNSIGNED_SHORT_4_4_4_4'] | GL['UNSIGNED_SHORT_5_5_5_1'] | GL['FLOAT']
+		| GL['SAMPLER_CUBE'];
+	type ReadPixelsFormat = GL['ALPHA'] | GL['RGB'] | GL['RGBA'];
+	type ReadPixelsType = GL['UNSIGNED_BYTE'] | GL['UNSIGNED_SHORT_5_6_5'] | GL['UNSIGNED_SHORT_4_4_4_4'] | GL['UNSIGNED_SHORT_5_5_5_1'] | GL['FLOAT'];
 
 	// #######################################
 	// ## Khronos ratified WebGL Extensions ##
@@ -1137,7 +1136,7 @@ declare namespace WebGLRenderingContextStrict {
 	/* [NoInterfaceObject] */
 	interface ANGLE_instanced_arrays {
 		readonly VERTEX_ATTRIB_ARRAY_DIVISOR_ANGLE: /* 0x88FE */ GLenum<'VERTEX_ATTRIB_ARRAY_DIVISOR_ANGLE'>;
-		drawArraysInstancedANGLE(mode: DrawMode, first: GLint, count: GLsizei, primcount:GLsizei ): void;
+		drawArraysInstancedANGLE(mode: DrawMode, first: GLint, count: GLsizei, primcount: GLsizei): void;
 		drawElementsInstancedANGLE(mode: DrawMode, count: GLsizei, type: GL['UNSIGNED_BYTE'] | GL['UNSIGNED_SHORT'], offset: GLintptr): void;
 		// Only with OES_element_index_uint
 		drawElementsInstancedANGLE(mode: DrawMode, count: GLsizei, type: GL['UNSIGNED_INT'], offset: GLintptr): void;
@@ -1146,7 +1145,7 @@ declare namespace WebGLRenderingContextStrict {
 	interface Base_ANGLE_instanced_arrays {
 		getParameter(pname: WEBGL_draw_buffers['MAX_COLOR_ATTACHMENTS_WEBGL']): GLuint;
 		getParameter(pname: WEBGL_draw_buffers['MAX_DRAW_BUFFERS_WEBGL']): GLuint;
-		getParameter(pname: DrawBuffer): GL['NONE'] | GL['BACK'] | ColorAttachment // accurate?
+		getParameter(pname: DrawBuffer): GL['NONE'] | GL['BACK'] | ColorAttachment; // accurate?
 		framebufferRenderbuffer(target: GL['FRAMEBUFFER'], attachment: ColorAttachment, renderbuffertarget: GL['RENDERBUFFER'], renderbuffer: WebGLRenderbuffer | null): void;
 		framebufferTexture2D(target: GL['FRAMEBUFFER'], attachment: ColorAttachment, textarget: TexImage2DTarget, texture: WebGLTexture | null, level: GLint): void;
 		drawBuffersWEBGL(buffers: Array<GL['NONE'] | GL['BACK'] | ColorAttachment>): void;
@@ -1278,7 +1277,7 @@ declare namespace WebGLRenderingContextStrict {
 	type CompressedTextureFormatS3tc = WEBGL_compressed_texture_s3tc['COMPRESSED_RGB_S3TC_DXT1_EXT']
 		| WEBGL_compressed_texture_s3tc['COMPRESSED_RGBA_S3TC_DXT1_EXT']
 		| WEBGL_compressed_texture_s3tc['COMPRESSED_RGBA_S3TC_DXT3_EXT']
-		| WEBGL_compressed_texture_s3tc['COMPRESSED_RGBA_S3TC_DXT5_EXT']
+		| WEBGL_compressed_texture_s3tc['COMPRESSED_RGBA_S3TC_DXT5_EXT'];
 
 	// https://www.khronos.org/registry/webgl/extensions/WEBGL_depth_texture/
 	/* [NoInterfaceObject] */
@@ -1359,7 +1358,7 @@ declare namespace WebGLRenderingContextStrict {
 	interface Base_WEBGL_draw_buffers {
 		getParameter(pname: WEBGL_draw_buffers['MAX_COLOR_ATTACHMENTS_WEBGL']): GLuint;
 		getParameter(pname: WEBGL_draw_buffers['MAX_DRAW_BUFFERS_WEBGL']): GLuint;
-		getParameter(pname: DrawBuffer): GL['NONE'] | GL['BACK'] | ColorAttachment
+		getParameter(pname: DrawBuffer): GL['NONE'] | GL['BACK'] | ColorAttachment;
 		framebufferRenderbuffer(target: GL['FRAMEBUFFER'], attachment: ColorAttachment, renderbuffertarget: GL['RENDERBUFFER'], renderbuffer: WebGLRenderbuffer | null): void;
 		framebufferTexture2D(target: GL['FRAMEBUFFER'], attachment: ColorAttachment, textarget: TexImage2DTarget, texture: WebGLTexture | null, level: GLint): void;
 	}
@@ -1407,7 +1406,7 @@ declare namespace WebGLRenderingContextStrict {
 		blendEquation(mode: BlendEquationModeMinMax): void;
 		blendEquationSeparate(modeRGB: BlendEquationModeMinMax, modeAlpha: BlendEquationModeMinMax): void;
 	}
-	type BlendEquationModeMinMax = EXT_blend_minmax['MIN_EXT'] | EXT_blend_minmax['MAX_EXT']
+	type BlendEquationModeMinMax = EXT_blend_minmax['MIN_EXT'] | EXT_blend_minmax['MAX_EXT'];
 
 	// #########################################
 	// ## Community approved WebGL Extensions ##
@@ -1481,7 +1480,7 @@ declare namespace WebGLRenderingContextStrict {
 
 		renderbufferStorage(target: GL['RENDERBUFFER'], internalformat: EXT_sRGB['SRGB8_ALPHA8_EXT'], width: GLsizei, height: GLsizei): void;
 
-		getFramebufferAttachmentParameter(target: GL['FRAMEBUFFER'], attachment: ColorAttachment, pname: EXT_sRGB['FRAMEBUFFER_ATTACHMENT_COLOR_ENCODING_EXT']): GL['LINEAR'] | EXT_sRGB['SRGB_EXT']
+		getFramebufferAttachmentParameter(target: GL['FRAMEBUFFER'], attachment: ColorAttachment, pname: EXT_sRGB['FRAMEBUFFER_ATTACHMENT_COLOR_ENCODING_EXT']): GL['LINEAR'] | EXT_sRGB['SRGB_EXT'];
 	}
 
 	// https://www.khronos.org/registry/webgl/extensions/WEBGL_color_buffer_float/
@@ -1564,7 +1563,7 @@ declare namespace WebGLRenderingContextStrict {
 		| WEBGL_compressed_texture_astc['COMPRESSED_SRGB8_ALPHA8_ASTC_10x8_KHR']
 		| WEBGL_compressed_texture_astc['COMPRESSED_SRGB8_ALPHA8_ASTC_10x10_KHR']
 		| WEBGL_compressed_texture_astc['COMPRESSED_SRGB8_ALPHA8_ASTC_12x10_KHR']
-		| WEBGL_compressed_texture_astc['COMPRESSED_SRGB8_ALPHA8_ASTC_12x12_KHR']
+		| WEBGL_compressed_texture_astc['COMPRESSED_SRGB8_ALPHA8_ASTC_12x12_KHR'];
 
 	// https://www.khronos.org/registry/webgl/extensions/WEBGL_compressed_texture_atc/
 	/* [NoInterfaceObject] */
@@ -1580,7 +1579,7 @@ declare namespace WebGLRenderingContextStrict {
 	}
 	type CompressedTextureFormatAtc = WEBGL_compressed_texture_atc['COMPRESSED_RGB_ATC_WEBGL']
 		| WEBGL_compressed_texture_atc['COMPRESSED_RGBA_ATC_EXPLICIT_ALPHA_WEBGL']
-		| WEBGL_compressed_texture_atc['COMPRESSED_RGBA_ATC_INTERPOLATED_ALPHA_WEBGL']
+		| WEBGL_compressed_texture_atc['COMPRESSED_RGBA_ATC_INTERPOLATED_ALPHA_WEBGL'];
 
 		// https://www.khronos.org/registry/webgl/extensions/WEBGL_compressed_texture_etc/
 		/* [NoInterfaceObject] */
@@ -1610,7 +1609,7 @@ declare namespace WebGLRenderingContextStrict {
 		| WEBGL_compressed_texture_etc['COMPRESSED_RGB8_PUNCHTHROUGH_ALPHA1_ETC2']
 		| WEBGL_compressed_texture_etc['COMPRESSED_SRGB8_PUNCHTHROUGH_ALPHA1_ETC2']
 		| WEBGL_compressed_texture_etc['COMPRESSED_RGBA8_ETC2_EAC']
-		| WEBGL_compressed_texture_etc['COMPRESSED_SRGB8_ALPHA8_ETC2_EAC']
+		| WEBGL_compressed_texture_etc['COMPRESSED_SRGB8_ALPHA8_ETC2_EAC'];
 
 	// https://www.khronos.org/registry/webgl/extensions/WEBGL_compressed_texture_etc1/
 	/* [NoInterfaceObject] */
@@ -1639,7 +1638,7 @@ declare namespace WebGLRenderingContextStrict {
 	type CompressedTextureFormatPvrtc = WEBGL_compressed_texture_pvrtc['COMPRESSED_RGB_PVRTC_4BPPV1_IMG']
 		| WEBGL_compressed_texture_pvrtc['COMPRESSED_RGB_PVRTC_2BPPV1_IMG']
 		| WEBGL_compressed_texture_pvrtc['COMPRESSED_RGBA_PVRTC_4BPPV1_IMG']
-		| WEBGL_compressed_texture_pvrtc['COMPRESSED_RGBA_PVRTC_2BPPV1_IMG']
+		| WEBGL_compressed_texture_pvrtc['COMPRESSED_RGBA_PVRTC_2BPPV1_IMG'];
 
 	// https://www.khronos.org/registry/webgl/extensions/WEBGL_compressed_texture_s3tc_srgb/
 	/* [NoInterfaceObject] */
@@ -1694,7 +1693,6 @@ interface WebGLContextEvent extends Event {
     readonly statusMessage: string;
 }
 
-
 // EventInit is defined in the DOM4 specification.
 interface WebGLContextEventInit extends EventInit {
     statusMessage?: string;
@@ -1702,4 +1700,4 @@ interface WebGLContextEventInit extends EventInit {
 declare var WebGLContextEvent: {
     prototype: WebGLContextEvent;
     new(typeArg: string, eventInitDict?: WebGLContextEventInit): WebGLContextEvent;
-}
+};

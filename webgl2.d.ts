@@ -1,7 +1,7 @@
 /// <reference path="./webgl.d.ts" />;
-// TypeScript Version: 2.3
 // tslint:disable:max-line-length
 // tslint:disable:typedef-whitespace
+// tslint:disable:unified-signatures
 
 interface HTMLCanvasElement extends HTMLElement {
     getContext(contextId: "webgl2" | "experimental-webgl2", contextAttributes?: WebGLContextAttributes): WebGL2RenderingContext | null;
@@ -207,7 +207,7 @@ declare namespace WebGL2RenderingContext {
 		readonly UNSIGNED_INT_24_8:                             /* 0x84FA */ GLenum<'UNSIGNED_INT_24_8'>;
 		readonly DEPTH24_STENCIL8:                              /* 0x88F0 */ GLenum<'DEPTH24_STENCIL8'>;
 		readonly UNSIGNED_NORMALIZED:                           /* 0x8C17 */ GLenum<'UNSIGNED_NORMALIZED'>;
-		readonly DRAW_FRAMEBUFFER_BINDING:                      /* 0x8CA6 */ GLenum<'DRAW_FRAMEBUFFER_BINDING'> /* Same as FRAMEBUFFER_BINDING */
+		readonly DRAW_FRAMEBUFFER_BINDING:                      /* 0x8CA6 */ GLenum<'DRAW_FRAMEBUFFER_BINDING'>; /* Same as FRAMEBUFFER_BINDING */
 		readonly READ_FRAMEBUFFER:                              /* 0x8CA8 */ GLenum<'READ_FRAMEBUFFER'>;
 		readonly DRAW_FRAMEBUFFER:                              /* 0x8CA9 */ GLenum<'DRAW_FRAMEBUFFER'>;
 		readonly READ_FRAMEBUFFER_BINDING:                      /* 0x8CAA */ GLenum<'READ_FRAMEBUFFER_BINDING'>;
@@ -260,8 +260,8 @@ declare namespace WebGL2RenderingContext {
 		readonly SIGNED_NORMALIZED:                             /* 0x8F9C */ GLenum<'SIGNED_NORMALIZED'>;
 		readonly COPY_READ_BUFFER:                              /* 0x8F36 */ GLenum<'COPY_READ_BUFFER'>;
 		readonly COPY_WRITE_BUFFER:                             /* 0x8F37 */ GLenum<'COPY_WRITE_BUFFER'>;
-		readonly COPY_READ_BUFFER_BINDING:                      /* 0x8F36 */ GLenum<'COPY_READ_BUFFER_BINDING'> /* Same as COPY_READ_BUFFER */
-		readonly COPY_WRITE_BUFFER_BINDING:                     /* 0x8F37 */ GLenum<'COPY_WRITE_BUFFER_BINDING'> /* Same as COPY_WRITE_BUFFER */
+		readonly COPY_READ_BUFFER_BINDING:                      /* 0x8F36 */ GLenum<'COPY_READ_BUFFER_BINDING'>; /* Same as COPY_READ_BUFFER */
+		readonly COPY_WRITE_BUFFER_BINDING:                     /* 0x8F37 */ GLenum<'COPY_WRITE_BUFFER_BINDING'>; /* Same as COPY_WRITE_BUFFER */
 		readonly UNIFORM_BUFFER:                                /* 0x8A11 */ GLenum<'UNIFORM_BUFFER'>;
 		readonly UNIFORM_BUFFER_BINDING:                        /* 0x8A28 */ GLenum<'UNIFORM_BUFFER_BINDING'>;
 		readonly UNIFORM_BUFFER_START:                          /* 0x8A29 */ GLenum<'UNIFORM_BUFFER_START'>;
@@ -319,7 +319,7 @@ declare namespace WebGL2RenderingContext {
 		readonly MAX_ELEMENT_INDEX:                             /* 0x8D6B */ GLenum<'MAX_ELEMENT_INDEX'>;
 		readonly TEXTURE_IMMUTABLE_LEVELS:                      /* 0x82DF */ GLenum<'TEXTURE_IMMUTABLE_LEVELS'>;
 
-		readonly  TIMEOUT_IGNORED: GLint64//                              = -1;
+		readonly  TIMEOUT_IGNORED: GLint64; //                              = -1;
 
 		/* WebGL-specific enums */
 		readonly MAX_CLIENT_WAIT_TIMEOUT_WEBGL:                 /* 0x9247 */ GLenum<'MAX_CLIENT_WAIT_TIMEOUT_WEBGL'>;
@@ -382,8 +382,8 @@ declare namespace WebGL2RenderingContext {
 		getParameter(pname: GL2['UNIFORM_BUFFER_OFFSET_ALIGNMENT']): GLint;
 		getParameter(pname: PixelStorageIntParameter): GLint;
 		getParameter(pname: GL2['VERTEX_ARRAY_BINDING']): WebGLVertexArrayObject;
-		getParameter(pname: GL2['VERSION']): DOMString // of the form `WebGL<space>2.0<optional><space><vendor-specific information></optional>`
-		getParameter(pname: GL2['SHADING_LANGUAGE_VERSION']): DOMString // of the form `WebGL<space>GLSL<space>ES<space>3.00<optional><space><vendor-specific information></optional>`
+		getParameter(pname: GL2['VERSION']): DOMString; // of the form `WebGL<space>2.0<optional><space><vendor-specific information></optional>`
+		getParameter(pname: GL2['SHADING_LANGUAGE_VERSION']): DOMString; // of the form `WebGL<space>GLSL<space>ES<space>3.00<optional><space><vendor-specific information></optional>`
 
 		enable(cap: Capability): void;
 		disable(cap: Capability): void;
@@ -399,21 +399,20 @@ declare namespace WebGL2RenderingContext {
 
 		getFramebufferAttachmentParameter(target: FramebufferTarget, attachment: FramebufferAttachment, pname: GL2['FRAMEBUFFER_ATTACHMENT_ALPHA_SIZE']): GLint;
 		getFramebufferAttachmentParameter(target: FramebufferTarget, attachment: FramebufferAttachment, pname: GL2['FRAMEBUFFER_ATTACHMENT_BLUE_SIZE']): GLint;
-		getFramebufferAttachmentParameter(target: FramebufferTarget, attachment: FramebufferAttachment, pname: GL2['FRAMEBUFFER_ATTACHMENT_COLOR_ENCODING']): GL2['LINEAR'] | GL2['SRGB']
-		getFramebufferAttachmentParameter(target: FramebufferTarget, attachment: FramebufferAttachment, pname: GL2['FRAMEBUFFER_ATTACHMENT_COMPONENT_TYPE']): GL2['FLOAT'] | GL2['INT'] | GL2['UNSIGNED_INT'] | GL2['SIGNED_NORMALIZED'] | GL2['UNSIGNED_NORMALIZED']
+		getFramebufferAttachmentParameter(target: FramebufferTarget, attachment: FramebufferAttachment, pname: GL2['FRAMEBUFFER_ATTACHMENT_COLOR_ENCODING']): GL2['LINEAR'] | GL2['SRGB'];
+		getFramebufferAttachmentParameter(target: FramebufferTarget, attachment: FramebufferAttachment, pname: GL2['FRAMEBUFFER_ATTACHMENT_COMPONENT_TYPE']): GL2['FLOAT'] | GL2['INT'] | GL2['UNSIGNED_INT'] | GL2['SIGNED_NORMALIZED'] | GL2['UNSIGNED_NORMALIZED'];
 		getFramebufferAttachmentParameter(target: FramebufferTarget, attachment: FramebufferAttachment, pname: GL2['FRAMEBUFFER_ATTACHMENT_DEPTH_SIZE']): GLint;
 		getFramebufferAttachmentParameter(target: FramebufferTarget, attachment: FramebufferAttachment, pname: GL2['FRAMEBUFFER_ATTACHMENT_GREEN_SIZE']): GLint;
 		getFramebufferAttachmentParameter(target: FramebufferTarget, attachment: FramebufferAttachment, pname: GL2['FRAMEBUFFER_ATTACHMENT_RED_SIZE']): GLint;
 		getFramebufferAttachmentParameter(target: FramebufferTarget, attachment: FramebufferAttachment, pname: GL2['FRAMEBUFFER_ATTACHMENT_STENCIL_SIZE']): GLint;
 		getFramebufferAttachmentParameter(target: FramebufferTarget, attachment: FramebufferAttachment, pname: GL2['FRAMEBUFFER_ATTACHMENT_TEXTURE_LAYER']): GLint;
 
-		getProgramParameter(program: WebGLProgram | null, pname: GL2['TRANSFORM_FEEDBACK_BUFFER_MODE']): GL2['SEPARATE_ATTRIBS'] | GL2['INTERLEAVED_ATTRIBS']
+		getProgramParameter(program: WebGLProgram | null, pname: GL2['TRANSFORM_FEEDBACK_BUFFER_MODE']): GL2['SEPARATE_ATTRIBS'] | GL2['INTERLEAVED_ATTRIBS'];
 		getProgramParameter(program: WebGLProgram | null, pname: GL2['TRANSFORM_FEEDBACK_VARYINGS']): GLint;
 		getProgramParameter(program: WebGLProgram | null, pname: GL2['ACTIVE_UNIFORM_BLOCKS']): GLint;
 
 		getRenderbufferParameter(target: GL['RENDERBUFFER'], pname: GL2['RENDERBUFFER_SAMPLES']): GLint;
 
-		texParameterf(target: TextureTarget, pname: never, param: GLfloat): void;
 		texParameteri(target: TextureTarget, pname: GL2['TEXTURE_MAG_FILTER'], param: GL.TextureMagFilter): void;
 		texParameteri(target: TextureTarget, pname: GL2['TEXTURE_MIN_FILTER'], param: GL.TextureMinFilter): void;
 		texParameteri(target: TextureTarget, pname: GL2['TEXTURE_WRAP_S'] | GL2['TEXTURE_WRAP_T'] | GL2['TEXTURE_WRAP_R'], param: GL.TextureWrap): void;
@@ -430,7 +429,7 @@ declare namespace WebGL2RenderingContext {
 		getTexParameter(target: TextureTarget, pname: GL2['TEXTURE_WRAP_S'] | GL2['TEXTURE_WRAP_T'] | GL2['TEXTURE_WRAP_R']): GL.TextureWrap;
 		getTexParameter(target: TextureTarget, pname: GL2['TEXTURE_BASE_LEVEL']): GLint;
 		getTexParameter(target: TextureTarget, pname: GL2['TEXTURE_COMPARE_FUNC']): GL.ComparisonFunc;
-		getTexParameter(target: TextureTarget, pname: GL2['TEXTURE_COMPARE_MODE']): GL2['COMPARE_REF_TO_TEXTURE'] | GL2['NONE']
+		getTexParameter(target: TextureTarget, pname: GL2['TEXTURE_COMPARE_MODE']): GL2['COMPARE_REF_TO_TEXTURE'] | GL2['NONE'];
 		getTexParameter(target: TextureTarget, pname: GL2['TEXTURE_IMMUTABLE_FORMAT']): GLboolean;
 		getTexParameter(target: TextureTarget, pname: GL2['TEXTURE_IMMUTABLE_LEVELS']): GLuint;
 		getTexParameter(target: TextureTarget, pname: GL2['TEXTURE_MAX_LEVEL']): GLint;
@@ -450,7 +449,7 @@ declare namespace WebGL2RenderingContext {
 
 		renderbufferStorage(target: GL['RENDERBUFFER'], internalformat: RenderbufferInternalFormat, width: GLsizei, height: GLsizei): void;
 
-		copyTexImage2D(target: TexImage2DTarget, level: GLint, internalformat: TextureInternalFormat, x: GLint, y: GLint, width: GLsizei, height: GLsizei, border: 0): void;
+		copyTexImage2D(target: GL.TexImage2DTarget, level: GLint, internalformat: TextureInternalFormat, x: GLint, y: GLint, width: GLsizei, height: GLsizei, border: 0): void;
 
 		/* Buffer objects */
 		// WebGL1:
@@ -1073,16 +1072,15 @@ declare namespace WebGL2RenderingContext {
 		samplerParameterf(sampler: WebGLSampler, pname: GL2['TEXTURE_WRAP_S'], param: GL.TextureWrap): void;
 		samplerParameterf(sampler: WebGLSampler, pname: GL2['TEXTURE_WRAP_T'], param: GL.TextureWrap): void;
 
-		getSamplerParameter(sampler: WebGLSampler, pname: GL2['TEXTURE_COMPARE_FUNC']): GL.ComparisonFunc // indicating the texture comparison function.
-		getSamplerParameter(sampler: WebGLSampler, pname: GL2['TEXTURE_COMPARE_MODE']): GL2['COMPARE_REF_TO_TEXTURE'] | GL2['NONE'] // indicating the texture comparison mode.
-		getSamplerParameter(sampler: WebGLSampler, pname: GL2['TEXTURE_MAG_FILTER']): GL.TextureMagFilter // indicating the texture magnification filter.
-		getSamplerParameter(sampler: WebGLSampler, pname: GL2['TEXTURE_MIN_FILTER']): GL.TextureMinFilter // indicating the texture minification filter
-		getSamplerParameter(sampler: WebGLSampler, pname: GL2['TEXTURE_MAX_LOD']): GLfloat // indicating the maximum level-of-detail value.
-		getSamplerParameter(sampler: WebGLSampler, pname: GL2['TEXTURE_MIN_LOD']): GLfloat // indicating the minimum level-of-detail value.
-		getSamplerParameter(sampler: WebGLSampler, pname: GL2['TEXTURE_WRAP_R']): GL.TextureWrap // indicating the texture wrapping function for the texture coordinate r.
-		getSamplerParameter(sampler: WebGLSampler, pname: GL2['TEXTURE_WRAP_S']): GL.TextureWrap // indicating the texture wrapping function for the texture coordinate s.
-		getSamplerParameter(sampler: WebGLSampler, pname: GL2['TEXTURE_WRAP_T']): GL.TextureWrap // indicating the texture wrapping function for the texture coordinate t.
-
+		getSamplerParameter(sampler: WebGLSampler, pname: GL2['TEXTURE_COMPARE_FUNC']): GL.ComparisonFunc; // indicating the texture comparison function.
+		getSamplerParameter(sampler: WebGLSampler, pname: GL2['TEXTURE_COMPARE_MODE']): GL2['COMPARE_REF_TO_TEXTURE'] | GL2['NONE']; // indicating the texture comparison mode.
+		getSamplerParameter(sampler: WebGLSampler, pname: GL2['TEXTURE_MAG_FILTER']): GL.TextureMagFilter; // indicating the texture magnification filter.
+		getSamplerParameter(sampler: WebGLSampler, pname: GL2['TEXTURE_MIN_FILTER']): GL.TextureMinFilter; // indicating the texture minification filter
+		getSamplerParameter(sampler: WebGLSampler, pname: GL2['TEXTURE_MAX_LOD']): GLfloat; // indicating the maximum level-of-detail value.
+		getSamplerParameter(sampler: WebGLSampler, pname: GL2['TEXTURE_MIN_LOD']): GLfloat; // indicating the minimum level-of-detail value.
+		getSamplerParameter(sampler: WebGLSampler, pname: GL2['TEXTURE_WRAP_R']): GL.TextureWrap; // indicating the texture wrapping function for the texture coordinate r.
+		getSamplerParameter(sampler: WebGLSampler, pname: GL2['TEXTURE_WRAP_S']): GL.TextureWrap; // indicating the texture wrapping function for the texture coordinate s.
+		getSamplerParameter(sampler: WebGLSampler, pname: GL2['TEXTURE_WRAP_T']): GL.TextureWrap; // indicating the texture wrapping function for the texture coordinate t.
 
 		/* Sync objects */
 		fenceSync(condition: GL2['SYNC_GPU_COMMANDS_COMPLETE'], flags: 0): WebGLSync | null;
@@ -1091,9 +1089,9 @@ declare namespace WebGL2RenderingContext {
 		clientWaitSync(sync: WebGLSync, flags: 0 | GL2['SYNC_FLUSH_COMMANDS_BIT'], timeout: GLuint64): ClientWaitSyncStatus;
 		waitSync(sync: WebGLSync, flags: 0, timeout: GLint64): void;
 
-		getSyncParameter(sync: WebGLSync, pname: GL2['OBJECT_TYPE']): GL2['SYNC_FENCE']
-		getSyncParameter(sync: WebGLSync, pname: GL2['SYNC_STATUS']): GL2['SIGNALED'] | GL2['UNSIGNALED']
-		getSyncParameter(sync: WebGLSync, pname: GL2['SYNC_CONDITION']): GL2['SYNC_GPU_COMMANDS_COMPLETE']
+		getSyncParameter(sync: WebGLSync, pname: GL2['OBJECT_TYPE']): GL2['SYNC_FENCE'];
+		getSyncParameter(sync: WebGLSync, pname: GL2['SYNC_STATUS']): GL2['SIGNALED'] | GL2['UNSIGNALED'];
+		getSyncParameter(sync: WebGLSync, pname: GL2['SYNC_CONDITION']): GL2['SYNC_GPU_COMMANDS_COMPLETE'];
 		getSyncParameter(sync: WebGLSync, pname: GL2['SYNC_FLAGS']): 0;
 
 		/* Transform Feedback */
@@ -1179,7 +1177,7 @@ declare namespace WebGL2RenderingContext {
 		| GL2['DEPTH_COMPONENT24']
 		| GL2['DEPTH_COMPONENT32F']
 		| GL2['DEPTH24_STENCIL8']
-		| GL2['DEPTH32F_STENCIL8']
+		| GL2['DEPTH32F_STENCIL8'];
 	type TextureInternalFormat = GL.TextureInternalFormat
 		| GL2['R8']
 		| GL2['R16F']
@@ -1275,7 +1273,7 @@ declare namespace WebGL2RenderingContext {
 		| Int32Array
 		| Uint32Array
 		| GLboolean[]
-		| GLuint
+		| GLuint;
 	type BufferDataUsage = GL.BufferDataUsage
 		| GL2['STATIC_READ'] // Contents of the buffer are likely to be used often and not change often. Contents are read from the buffer, but not written.
 		| GL2['DYNAMIC_READ'] // Contents of the buffer are likely to be used often and change often. Contents are read from the buffer, but not written.
@@ -1295,7 +1293,7 @@ declare namespace WebGL2RenderingContext {
 		| GL2['RGB']
 		| GL2['RGB_INTEGER']
 		| GL2['RGBA']
-		| GL2['RGBA_INTEGER']
+		| GL2['RGBA_INTEGER'];
 	type ReadPixelsFormat = GL2['RED']
 		| GL2['RED_INTEGER']
 		| GL2['RG']
@@ -1319,8 +1317,7 @@ declare namespace WebGL2RenderingContext {
 		| GL2['UNPACK_IMAGE_HEIGHT']
 		| GL2['UNPACK_SKIP_PIXELS']
 		| GL2['UNPACK_SKIP_ROWS']
-		| GL2['UNPACK_SKIP_IMAGES']
-
+		| GL2['UNPACK_SKIP_IMAGES'];
 
 	// https://www.khronos.org/registry/webgl/extensions/EXT_texture_filter_anisotropic/
 	interface Base_EXT_texture_filter_anisotropic {

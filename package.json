@@ -18,5 +18,8 @@
     "url": "https://github.com/NaridaL/webgl-strict-types.git"
   },
   "author": "Adrian Leonhard",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "dtslint": "^0.2.0"
+  }
 }
