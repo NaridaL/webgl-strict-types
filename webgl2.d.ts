@@ -29,6 +29,7 @@ interface WebGLVertexArrayObject extends WebGLObject {
 
 declare namespace WebGL2RenderingContextStrict {
 	import GL = WebGLRenderingContextStrict;
+	import GL2 = WebGL2RenderingContextStrict
 	import GLenum = GL.GLenum;
 	interface Constants {
 		readonly READ_BUFFER:                                   /* 0x0C02 */ GLenum<'READ_BUFFER'>;
@@ -314,7 +315,7 @@ declare namespace WebGL2RenderingContextStrict {
 		/** Get one of the values set with #drawBuffers  */
 		getParameter(pname: GL.DrawBuffer): GL['NONE'] | GL['BACK'] | GL.ColorAttachment;
 		/** Get the WebGLFramebuffer (or null == the default framebuffer) bound to DRAW_FRAMEBUFFER. See also #bindFramebuffer */
-		getParameter(pname: GL2['']): WebGLFramebuffer | null;
+		getParameter(pname: GL2['DRAW_FRAMEBUFFER_BINDING']): WebGLFramebuffer | null;
 		/** Get the WebGLFramebuffer (or null == the default framebuffer) bound to READ_FRAMEBUFFER. See also #bindFramebuffer */
 		getParameter(pname: GL2['READ_FRAMEBUFFER_BINDING']): WebGLFramebuffer | null;
 		getParameter(pname: GL2['FRAGMENT_SHADER_DERIVATIVE_HINT']): GL.HintMode;
