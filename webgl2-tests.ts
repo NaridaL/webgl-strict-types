@@ -32,7 +32,7 @@ window.onload = () => {
 };
 
 import GL = WebGLRenderingContextStrict;
-import GL2 = WebGL2RenderingContext;
+import GL2 = WebGL2RenderingContextStrict;
 
 declare const gl: GL;
 gl.texImage2D(0 as any, 0, gl.RGBA, 1024, 1024, 0, gl.RGBA, gl.FLOAT, new Float32Array([]));
@@ -56,7 +56,7 @@ function attachRenderbufferToFramebuffer(gl: GL, fb: WebGLFramebuffer, rb: WebGL
 }
 
 // a variable which is either GL or GL2 should allow common methods to be called.
-function testWebGL1or2(gl: GL | WebGL2RenderingContext) {
+function testWebGL1or2(gl: GL | GL2) {
     gl.bufferData(gl.ARRAY_BUFFER, 12, gl.STREAM_DRAW);
 
     gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.REPEAT);
