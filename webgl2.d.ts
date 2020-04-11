@@ -7,53 +7,29 @@ interface HTMLCanvasElement extends HTMLElement {
     getContext(contextId: "webgl2" | "experimental-webgl2", contextAttributes?: WebGLContextAttributes): WebGL2RenderingContext | null;
 }
 
-type GLint64 = number;
-type GLuint64 = number;
 interface WebGLQuery extends WebGLObject {
 	__WebGLObjectBrand: 'WebGLQuery';
 }
-declare var WebGLQuery: {
-	prototype: WebGLQuery;
-	new(_: never): WebGLQuery;
-};
 
 interface WebGLSampler extends WebGLObject {
 	__WebGLObjectBrand: 'WebGLSampler';
 }
-declare var WebGLSampler: {
-	prototype: WebGLSampler;
-	new(_: never): WebGLSampler;
-};
 
 interface WebGLSync extends WebGLObject {
 	__WebGLObjectBrand: 'WebGLSync';
 }
-declare var WebGLSync: {
-	prototype: WebGLSync;
-	new(_: never): WebGLSync;
-};
 
 interface WebGLTransformFeedback extends WebGLObject {
 	__WebGLObjectBrand: 'WebGLTransformFeedback';
 }
-declare var WebGLTransformFeedback: {
-	prototype: WebGLTransformFeedback;
-	new(_: never): WebGLTransformFeedback;
-};
 
 interface WebGLVertexArrayObject extends WebGLObject {
 	__WebGLObjectBrand: 'WebGLVertexArrayObject';
 }
-declare var WebGLVertexArrayObject: {
-	prototype: WebGLVertexArrayObject;
-	new(_: never): WebGLVertexArrayObject;
-};
 
-type Uint32List = /* [AllowShared] */ Uint32Array | GLuint[];
-declare namespace WebGL2RenderingContext {
+declare namespace WebGL2RenderingContextStrict {
 	import GL = WebGLRenderingContextStrict;
 	import GLenum = GL.GLenum;
-	import GL2 = WebGL2RenderingContext;
 	interface Constants {
 		readonly READ_BUFFER:                                   /* 0x0C02 */ GLenum<'READ_BUFFER'>;
 		readonly UNPACK_ROW_LENGTH:                             /* 0x0CF2 */ GLenum<'UNPACK_ROW_LENGTH'>;
@@ -338,7 +314,7 @@ declare namespace WebGL2RenderingContext {
 		/** Get one of the values set with #drawBuffers  */
 		getParameter(pname: GL.DrawBuffer): GL['NONE'] | GL['BACK'] | GL.ColorAttachment;
 		/** Get the WebGLFramebuffer (or null == the default framebuffer) bound to DRAW_FRAMEBUFFER. See also #bindFramebuffer */
-		getParameter(pname: GL2['DRAW_FRAMEBUFFER_BINDING']): WebGLFramebuffer | null;
+		getParameter(pname: GL2['']): WebGLFramebuffer | null;
 		/** Get the WebGLFramebuffer (or null == the default framebuffer) bound to READ_FRAMEBUFFER. See also #bindFramebuffer */
 		getParameter(pname: GL2['READ_FRAMEBUFFER_BINDING']): WebGLFramebuffer | null;
 		getParameter(pname: GL2['FRAGMENT_SHADER_DERIVATIVE_HINT']): GL.HintMode;
@@ -1381,13 +1357,13 @@ declare namespace WebGL2RenderingContext {
 	type CompressedTextureFormatNoEtc1 = CompressedTextureFormat3D | GL.CompressedTextureFormatAtc | GL.CompressedTextureFormatPvrtc;
 	type CompressedTextureFormat = CompressedTextureFormatNoEtc1 | GL.WEBGL_compressed_texture_etc1['COMPRESSED_RGB_ETC1_WEBGL'];
 }
-type WebGL2RenderingContext = WebGLRenderingContextStrict.Base
+type WebGL2RenderingContextStrict = WebGLRenderingContextStrict.Base
 	& WebGLRenderingContextStrict.Base_WEBGL_debug_renderer_info
-	& WebGL2RenderingContext.Base
-	& WebGL2RenderingContext.Base_EXT_texture_filter_anisotropic
-	& WebGL2RenderingContext.Base_EXT_disjoint_timer_query_webgl2
-	& WebGL2RenderingContext.Base_compressedTextureFormat;
-declare var WebGL2RenderingContext: WebGL2RenderingContext.Constants & {
-	prototype: WebGL2RenderingContext;
-	new(_: never): WebGL2RenderingContext;
-};
+	& WebGL2RenderingContextStrict.Base
+	& WebGL2RenderingContextStrict.Base_EXT_texture_filter_anisotropic
+	& WebGL2RenderingContextStrict.Base_EXT_disjoint_timer_query_webgl2
+	& WebGL2RenderingContextStrict.Base_compressedTextureFormat;
+// declare var WebGL2RenderingContext: WebGL2RenderingContextStrict.Constants & {
+// 	prototype: WebGL2RenderingContext;
+// 	new(_: never): WebGL2RenderingContext;
+// };

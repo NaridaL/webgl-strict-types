@@ -20,6 +20,6 @@
   "author": "Adrian Leonhard",
   "license": "MIT",
   "devDependencies": {
-    "dtslint": "^0.2.0"
+    "dtslint": "^3.4.1"
   }
 }

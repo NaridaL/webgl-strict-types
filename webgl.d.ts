@@ -26,10 +26,6 @@
 // type GLclampf = number; // WebIDL: unrestricted float
 type DOMString = string;
 
-// The power preference settings are documented in the WebGLContextAttributes;
-// section of the specification.
-type WebGLPowerPreference = "default" | "low-power" | "high-performance";
-
 interface WebGLObject {
 	__WebGLObjectBrand: string;
 }
@@ -101,14 +97,6 @@ interface WebGLShaderPrecisionFormat {
     readonly precision: GLint;
 }
 
-type TexImageSource = ImageBitmap |
-	ImageData |
-	HTMLImageElement |
-	HTMLCanvasElement |
-	HTMLVideoElement;
-
-type Float32List = (/* [AllowShared] */ Float32Array | GLfloat[]); // WebIDL: ([AllowShared] Float32Array or GLfloat[])
-type Int32List = (/* [AllowShared] */ Int32Array | GLint[]); // WebIDL: ([AllowShared] Int32Array or GLint[])
 declare namespace WebGLRenderingContextStrict {
 	interface WebGLContextAttributes {
 		alpha: GLboolean; // = true
