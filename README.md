@@ -30,7 +30,8 @@ Alternatively, include them in your tsconfig:
 ```
 
 
-WebGL2 works without any further changes, for WebGL1, this doesn't override the existing typings, so you need to cast the context explicitly:
+As TypeScript already comes with (less strict) typings for WebGL/WebGL2, and this can't override
+the existing typings, you need to cast the context explicitly:
 
 ```ts
 const gl = canvas.getContext('webgl') as any as WebGLRenderingContextStrict;
