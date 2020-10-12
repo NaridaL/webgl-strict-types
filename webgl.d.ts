@@ -933,9 +933,6 @@ declare namespace WebGLRenderingContextStrict {
 		getActiveAttrib(program: WebGLProgram, index: GLuint): WebGLActiveInfo<AttribType> | null;
 		getActiveUniform(program: WebGLProgram, index: GLuint): WebGLActiveInfo<UniformType> | null;
 
-		// this method exists on WebGL2RenderingContext, so defining it as undefined here is useful for type narrowing
-		createTransformFeedback: undefined;
-
 		getRenderbufferParameter(target: GL['RENDERBUFFER'], pname: GL['RENDERBUFFER_INTERNAL_FORMAT']): RenderbufferInternalFormat;
 
 		getParameter(pname: GL['IMPLEMENTATION_COLOR_READ_FORMAT']): ReadPixelsFormat;
