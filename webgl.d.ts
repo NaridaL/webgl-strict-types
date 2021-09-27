@@ -1060,6 +1060,7 @@ declare namespace WebGLRenderingContextStrict {
 		| GL['INVALID_ENUM']
 		| GL['INVALID_VALUE']
 		| GL['INVALID_OPERATION']
+		| GL['INVALID_FRAMEBUFFER_OPERATION']
 		| GL['OUT_OF_MEMORY']
 		| GL['CONTEXT_LOST_WEBGL'];
 	type ShaderPrecisionType = GL['LOW_FLOAT']
