@@ -29,7 +29,7 @@ interface WebGLVertexArrayObject extends WebGLObject {
 
 declare namespace WebGL2RenderingContextStrict {
 	import GL = WebGLRenderingContextStrict;
-	import GL2 = WebGL2RenderingContextStrict
+	import GL2 = WebGL2RenderingContextStrict;
 	import GLenum = GL.GLenum;
 	interface Constants {
 		readonly READ_BUFFER:                                   /* 0x0C02 */ GLenum<'READ_BUFFER'>;
